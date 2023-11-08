@@ -1,0 +1,2 @@
+This is the content of Foo.txt
+That will be copied into Bar.txt

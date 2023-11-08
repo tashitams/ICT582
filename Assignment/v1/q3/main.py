@@ -1,0 +1,89 @@
+import sys
+
+from customer import Customer
+from transaction import Transaction
+
+program_menu = """
++----------------- Program Menu -----------------+
+|                                                |
+|   Press 1   :  Add a new customer              |
+|   Press 2   :  Add a new transaction           |
+|   Press 3   :  Search customers                |
+|   Press 4   :  Search transactions             |
+|   Press 5   :  Display customer transactions   |
+|   Press 6   :  Delete a transaction            |
+|   Press 7   :  Delete a customer               |
+|   Press 8   :  Load customer from csv          |
+|   Press 9   :  Save customer to csv            |
+|   Press 10  :  Load transaction from csv       |
+|   Press 11  :  Save transaction to csv         |
+|   Press 12  :  Monthly sales & transaction     |
+|   Press 13  :  Customer sales & transaction    |
+|   Press 14  :  Postcode sales & transaction    |
+|   Press 15  :  Quit                            | 
+|                                                |
++--------------- Select an option  --------------+
+"""
+
+def main():
+    customer = Customer()
+    transaction = Transaction()
+
+    while True:
+        print(program_menu)
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            customer.add()
+
+        elif choice == '2':
+            transaction.add(customer.customers)
+
+        elif choice == '3':
+            customer.search()
+
+        elif choice == '4':
+            transaction.search()
+
+        elif choice == '5':
+            transaction.display_transactions_for_customer()
+
+        elif choice == '6':
+            transaction.delete()
+
+        elif choice == '7':
+            customer.delete()
+
+        elif choice == '8':
+            customer.load_customer_from_csv()
+
+        elif choice == '9':
+            customer.save_customer_to_csv()
+
+        elif choice == '10':
+            transaction.load_transaction_from_csv(customer.customers)
+
+        elif choice == '11':
+            transaction.save_transaction_to_csv()
+
+        elif choice == '12':
+            transaction.monthly_sales_and_transaction_report()
+
+        elif choice == '13':
+            transaction.customer_monthly_sales_and_transaction_report()
+
+        elif choice == '14':
+            transaction.postcode_monthly_sales_and_transaction_report(customer.customers)
+
+        elif choice == '15':
+            exit("Program terminated successfully.")
+
+        else:
+            print("Invalid choice. Please try again.")
+            print("Press 'Enter' key to continue...")
+            sys.stdin.read(1)
+
+
+if __name__ == "__main__":
+    main()
